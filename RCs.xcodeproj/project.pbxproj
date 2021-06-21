@@ -14,6 +14,13 @@
 		D992108B2680863F00200BE7 /* RCs.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D99210892680863F00200BE7 /* RCs.xcdatamodeld */; };
 		D992108D2680864D00200BE7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D992108C2680864D00200BE7 /* Assets.xcassets */; };
 		D99210902680864D00200BE7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D992108E2680864D00200BE7 /* LaunchScreen.storyboard */; };
+		D992109E268089A800200BE7 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = D992109D268089A800200BE7 /* Project.swift */; };
+		D99210A1268089B600200BE7 /* AllProjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99210A0268089B600200BE7 /* AllProjects.swift */; };
+		D99210A526808A5000200BE7 /* ProjectDM+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99210A326808A5000200BE7 /* ProjectDM+CoreDataClass.swift */; };
+		D99210A626808A5000200BE7 /* ProjectDM+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99210A426808A5000200BE7 /* ProjectDM+CoreDataProperties.swift */; };
+		D99210AA26808A6D00200BE7 /* SimulateRcs.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99210A926808A6D00200BE7 /* SimulateRcs.swift */; };
+		D99210AD26808A7B00200BE7 /* TestCompiler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99210AC26808A7B00200BE7 /* TestCompiler.swift */; };
+		D99210B026808B0600200BE7 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99210AF26808B0600200BE7 /* CoreDataManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +33,13 @@
 		D992108C2680864D00200BE7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D992108F2680864D00200BE7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D99210912680864D00200BE7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D992109D268089A800200BE7 /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
+		D99210A0268089B600200BE7 /* AllProjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllProjects.swift; sourceTree = "<group>"; };
+		D99210A326808A5000200BE7 /* ProjectDM+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProjectDM+CoreDataClass.swift"; sourceTree = "<group>"; };
+		D99210A426808A5000200BE7 /* ProjectDM+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProjectDM+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		D99210A926808A6D00200BE7 /* SimulateRcs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimulateRcs.swift; sourceTree = "<group>"; };
+		D99210AC26808A7B00200BE7 /* TestCompiler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCompiler.swift; sourceTree = "<group>"; };
+		D99210AF26808B0600200BE7 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,16 +72,63 @@
 		D992107F2680863E00200BE7 /* RCs */ = {
 			isa = PBXGroup;
 			children = (
-				D99210802680863E00200BE7 /* AppDelegate.swift */,
-				D99210822680863E00200BE7 /* SceneDelegate.swift */,
-				D99210842680863E00200BE7 /* ViewController.swift */,
-				D99210862680863E00200BE7 /* Main.storyboard */,
+				D992109C2680894500200BE7 /* View */,
+				D992109B2680893D00200BE7 /* Delegate */,
+				D992109A2680893500200BE7 /* Controller */,
+				D99210992680892A00200BE7 /* Model */,
+				D99210982680892200200BE7 /* DataModel */,
 				D992108C2680864D00200BE7 /* Assets.xcassets */,
-				D992108E2680864D00200BE7 /* LaunchScreen.storyboard */,
 				D99210912680864D00200BE7 /* Info.plist */,
-				D99210892680863F00200BE7 /* RCs.xcdatamodeld */,
 			);
 			path = RCs;
+			sourceTree = "<group>";
+		};
+		D99210982680892200200BE7 /* DataModel */ = {
+			isa = PBXGroup;
+			children = (
+				D99210A326808A5000200BE7 /* ProjectDM+CoreDataClass.swift */,
+				D99210A426808A5000200BE7 /* ProjectDM+CoreDataProperties.swift */,
+				D99210892680863F00200BE7 /* RCs.xcdatamodeld */,
+			);
+			path = DataModel;
+			sourceTree = "<group>";
+		};
+		D99210992680892A00200BE7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D992109D268089A800200BE7 /* Project.swift */,
+				D99210A0268089B600200BE7 /* AllProjects.swift */,
+				D99210A926808A6D00200BE7 /* SimulateRcs.swift */,
+				D99210AC26808A7B00200BE7 /* TestCompiler.swift */,
+				D99210AF26808B0600200BE7 /* CoreDataManager.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		D992109A2680893500200BE7 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				D99210842680863E00200BE7 /* ViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		D992109B2680893D00200BE7 /* Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				D99210802680863E00200BE7 /* AppDelegate.swift */,
+				D99210822680863E00200BE7 /* SceneDelegate.swift */,
+			);
+			path = Delegate;
+			sourceTree = "<group>";
+		};
+		D992109C2680894500200BE7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D99210862680863E00200BE7 /* Main.storyboard */,
+				D992108E2680864D00200BE7 /* LaunchScreen.storyboard */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -140,10 +201,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D99210A626808A5000200BE7 /* ProjectDM+CoreDataProperties.swift in Sources */,
 				D992108B2680863F00200BE7 /* RCs.xcdatamodeld in Sources */,
+				D99210A1268089B600200BE7 /* AllProjects.swift in Sources */,
 				D99210852680863E00200BE7 /* ViewController.swift in Sources */,
 				D99210812680863E00200BE7 /* AppDelegate.swift in Sources */,
+				D992109E268089A800200BE7 /* Project.swift in Sources */,
 				D99210832680863E00200BE7 /* SceneDelegate.swift in Sources */,
+				D99210AA26808A6D00200BE7 /* SimulateRcs.swift in Sources */,
+				D99210AD26808A7B00200BE7 /* TestCompiler.swift in Sources */,
+				D99210A526808A5000200BE7 /* ProjectDM+CoreDataClass.swift in Sources */,
+				D99210B026808B0600200BE7 /* CoreDataManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
