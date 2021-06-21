@@ -16,12 +16,12 @@ enum ProbabilityOptions: String {
 
 struct SimulateRcs {
         
-    func calculateWeightedRcs(probabilityOptions: ProbabilityOptions, allProjects: AllProjects) -> Float {
+    func calculateWeightedRcs(probabilityOptions: ProbabilityOptions, allProjects: [Project]) -> Float {
         //  attributes
         var rcs: Float = 0
         var tempRcs: Float = 0
         
-        for i in allProjects.projectsArray {
+        for i in allProjects {
             //  change the value of probability based on the desired kind of weight
             var probability: Float {
                 switch probabilityOptions {

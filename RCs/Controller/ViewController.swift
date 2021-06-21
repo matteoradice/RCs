@@ -9,7 +9,7 @@ import UIKit
 
 class ViewController: UIViewController {
 
-//    var testCompiler: TestCompiler = TestCompiler()
+    var testCompiler: TestCompiler = TestCompiler()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +27,15 @@ class ViewController: UIViewController {
         for i in tuttiIProgetti {
             print(i.comments)
         }
-
+        
+        CoreDataManager.shared.deleteAllProjects()
+        tuttiIProgetti = CoreDataManager.shared.loadAllProjects()
+        print(tuttiIProgetti.count)
+        
+        for i in tuttiIProgetti {
+            print(i.comments)
+        }
+        
     }
 
 
