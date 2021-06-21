@@ -43,17 +43,15 @@ class CoreDataManager {
     }
     
     
-    // NOT WORKING
+    //  OK TESTED
     func deleteProject(project: Project) {
-        let projectDM: [ProjectDM] = convertProjectInProjectDM(project: [project])
-        for i in loadAllProjects() {
-        self.context.delete(projectDM[0])
+        let item = self.loadItemsByAttributes(project: project)[0]
+        self.context.delete(item)
         do {
             try self.context.save()
         } catch let error {
             print(error)
         }
-    }
     }
     
     //  OK TESTED
@@ -71,8 +69,8 @@ class CoreDataManager {
         }
     }
 }
-
     
+        
   
 //MARK: - Private methods
 extension CoreDataManager {
@@ -130,4 +128,17 @@ extension CoreDataManager {
         return projectsDM
     }
     
+    //  OK TESTED
+    private func loadItemsByAttributes(project: Project) -> [ProjectDM] {
+        let request: NSFetchRequest<ProjectDM> = NSFetchRequest(entityName: "ProjectDM")
+        request.returnsObjectsAsFaults = false
+        let predicate = NSPredicate(format: "clientName = %@ AND projectTitle = %@ AND clientPrice = %f AND expensesRatio = %f AND revenueCreditShare = %f AND comments = %@ AND probability = %f AND rcMultiplier = %f", project.clientName, project.projectTitle, project.clientPrice, project.expensesRatio, project.revenueCreditShare, project.comments, project.probability, project.rcMultiplier)
+        request.predicate = predicate
+        let items = self.loadFromFetchRequest(request: request)
+        return items
+    }
 }
+
+    
+
+
