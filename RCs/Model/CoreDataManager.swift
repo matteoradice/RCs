@@ -16,7 +16,8 @@ class CoreDataManager {
         let application = UIApplication.shared.delegate as! AppDelegate
         self.context = application.persistentContainer.viewContext
     }
-        
+    
+    //  OK TESTED
     func loadAllProjects() -> [Project] {
         let request:NSFetchRequest<ProjectDM> = NSFetchRequest(entityName: "ProjectDM")
         request.returnsObjectsAsFaults = false
@@ -25,6 +26,7 @@ class CoreDataManager {
         return projects
     }
     
+    //  OK TESTED
     func addProject(project: Project) {
         let item = NSEntityDescription.entity(forEntityName: "ProjectDM", in: self.context)
         let newItem = ProjectDM(entity: item!, insertInto: self.context)
@@ -40,38 +42,27 @@ class CoreDataManager {
         catch let error { print(error) }
     }
     
+    
+    // NOT WORKING
     func deleteProject(project: Project) {
-        let myProject = ProjectDM(context: context)
-        myProject.clientName = project.clientName
-        myProject.clientPrice = project.clientPrice
-        myProject.comments = project.comments
-        myProject.expensesRatio = project.expensesRatio
-        myProject.probability = project.probability
-        myProject.projectTitle = project.projectTitle
-        myProject.rcMultiplier = project.rcMultiplier
-        myProject.revenueCreditShare = project.revenueCreditShare
-        self.context.delete(myProject)
+        let projectDM: [ProjectDM] = convertProjectInProjectDM(project: [project])
+        for i in loadAllProjects() {
+        self.context.delete(projectDM[0])
         do {
             try self.context.save()
         } catch let error {
             print(error)
         }
     }
+    }
     
-    func deleteAllProjects(allProjects: AllProjects) {
-        print(allProjects.projectsArray.count)
-        for i in allProjects.projectsArray {
-            let project = i
-            let myProject = ProjectDM(context: context)
-            myProject.clientName = project.clientName
-            myProject.clientPrice = project.clientPrice
-            myProject.comments = project.comments
-            myProject.expensesRatio = project.expensesRatio
-            myProject.probability = project.probability
-            myProject.projectTitle = project.projectTitle
-            myProject.rcMultiplier = project.rcMultiplier
-            myProject.revenueCreditShare = project.revenueCreditShare
-            self.context.delete(myProject)
+    //  OK TESTED
+    func deleteAllProjects() {
+        let request:NSFetchRequest<ProjectDM> = NSFetchRequest(entityName: "ProjectDM")
+        request.returnsObjectsAsFaults = false
+        let retrievedData = self.loadFromFetchRequest(request: request)
+        for i in retrievedData {
+            self.context.delete(i)
             do {
                 try self.context.save()
             } catch let error {
@@ -79,12 +70,14 @@ class CoreDataManager {
             }
         }
     }
-
 }
 
-
+    
+  
 //MARK: - Private methods
 extension CoreDataManager {
+    
+    //  OK TESTED
     private func loadFromFetchRequest(request: NSFetchRequest<ProjectDM>) -> [ProjectDM] {
         var array = [ProjectDM]()
         do {
@@ -98,29 +91,31 @@ extension CoreDataManager {
         catch let error {
             print(error)
         }
-        return array
+        return []
     }
     
+    //  OK TESTED
     private func convertProjectDMInProject(projectDM: [ProjectDM]) -> [Project] {
         var projects: [Project] = []
-        let project: Project = Project(clientName: "", projectTitle: "", clientPrice: 0, expensesRatio: 0, revenueCreditShare: 0, comments: "", probability: 0)
         for i in projectDM {
-            project.clientName = i.clientName!
-            project.clientPrice = i.clientPrice
-            project.comments = i.comments!
-            project.expensesRatio = i.expensesRatio
-            project.probability = i.probability
-            project.projectTitle = i.projectTitle!
-            project.rcMultiplier = i.rcMultiplier
-            project.revenueCreditShare = i.revenueCreditShare
+            let project: Project = Project(clientName: i.clientName!,
+                                           projectTitle: i.projectTitle!,
+                                           clientPrice: i.clientPrice,
+                                           expensesRatio: i.expensesRatio,
+                                           revenueCreditShare: i.revenueCreditShare,
+                                           comments: i.comments!,
+                                           probability: i.probability,
+                                           rcMultiplier: i.rcMultiplier)
             projects.append(project)
         }
         return projects
     }
     
+    
+    // OK TESTED
     private func convertProjectInProjectDM(project: [Project]) -> [ProjectDM] {
         var projectsDM: [ProjectDM] = []
-        let projectDM: ProjectDM = ProjectDM()
+        let projectDM: ProjectDM = ProjectDM(context: context)
         for i in project {
             projectDM.clientName = i.clientName
             projectDM.clientPrice = i.clientPrice
