@@ -34,14 +34,21 @@ class ProjectsListController: UIViewController, UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProjectListCell", for: indexPath) as! ProjectListCell
+        
         if fullProjectsArray.count != 0 {
+            
             let project = fullProjectsArray[indexPath.row]
+            
             cell.clientLabel.text = project.clientName
             cell.titleLabel.text = project.projectTitle
             cell.colorLabel.text = ""
+            
             if project.probability == 1 { cell.colorLabel.backgroundColor = .systemGreen }
+            
             else if project.probability > 0 && project.probability < 1 { cell.colorLabel.backgroundColor = .systemOrange }
+            
             else { cell.colorLabel.backgroundColor = .systemRed }
+            
             return cell }
         else { return cell }
         

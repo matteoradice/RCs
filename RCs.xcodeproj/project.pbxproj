@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D910FF892681F36D001F73F2 /* AddNewProjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D910FF882681F36D001F73F2 /* AddNewProjectViewController.swift */; };
 		D99210812680863E00200BE7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99210802680863E00200BE7 /* AppDelegate.swift */; };
 		D99210832680863E00200BE7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99210822680863E00200BE7 /* SceneDelegate.swift */; };
 		D99210852680863E00200BE7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99210842680863E00200BE7 /* ViewController.swift */; };
@@ -27,6 +28,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D910FF882681F36D001F73F2 /* AddNewProjectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewProjectViewController.swift; sourceTree = "<group>"; };
 		D992107D2680863E00200BE7 /* RCs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RCs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D99210802680863E00200BE7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D99210822680863E00200BE7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 				D99210D32680E86B00200BE7 /* ProjectListCell.swift */,
 				D99210842680863E00200BE7 /* ViewController.swift */,
 				D99210CA2680D01400200BE7 /* ProjectsListController.swift */,
+				D910FF882681F36D001F73F2 /* AddNewProjectViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -230,6 +233,7 @@
 				D992108B2680863F00200BE7 /* RCs.xcdatamodeld in Sources */,
 				D99210C3268098AA00200BE7 /* ProjectDM+CoreDataProperties.swift in Sources */,
 				D99210A1268089B600200BE7 /* AllProjects.swift in Sources */,
+				D910FF892681F36D001F73F2 /* AddNewProjectViewController.swift in Sources */,
 				D99210852680863E00200BE7 /* ViewController.swift in Sources */,
 				D99210812680863E00200BE7 /* AppDelegate.swift in Sources */,
 				D99210CB2680D01400200BE7 /* ProjectsListController.swift in Sources */,
