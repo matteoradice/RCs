@@ -19,9 +19,10 @@ class Project {
     var comments: String
     var probability: Float
     var rcMultiplier: Float
+    var uniqueId: UUID
     
     // Initialization of the attributes
-    init(clientName: String, projectTitle: String, clientPrice: Float, expensesRatio: Float, revenueCreditShare: Float, comments: String, probability: Float, rcMultiplier: Float = 175) {
+    init(clientName: String, projectTitle: String, clientPrice: Float, expensesRatio: Float, revenueCreditShare: Float, comments: String, probability: Float, rcMultiplier: Float = 175, uniqueId: UUID = UUID()) {
         self.clientName = clientName
         self.projectTitle = projectTitle
         self.clientPrice = clientPrice
@@ -30,6 +31,7 @@ class Project {
         self.comments = comments
         self.probability = probability
         self.rcMultiplier = rcMultiplier
+        self.uniqueId = uniqueId
     }
     
 }

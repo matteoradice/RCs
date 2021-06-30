@@ -2,7 +2,7 @@
 //  ProjectDM+CoreDataProperties.swift
 //  RCs
 //
-//  Created by Matteo Radice on 21/06/21.
+//  Created by Matteo Radice on 30/06/21.
 //
 //
 
@@ -24,6 +24,7 @@ extension ProjectDM {
     @NSManaged public var projectTitle: String?
     @NSManaged public var rcMultiplier: Float
     @NSManaged public var revenueCreditShare: Float
+    @NSManaged public var uniqueId: UUID?
 
 }
 

@@ -19,8 +19,12 @@ class ProjectsListController: UIViewController, UITableViewDelegate, UITableView
     }
     var projectsArrayForTable: [ProjectsArrayForTable] = []
     
+    // get rid of this line if you don't want to initialize the db
+    // var testCompiler: TestCompiler = TestCompiler()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         projectTable.delegate = self
         projectTable.dataSource = self
         projectsArrayForTable = createProjectListArrayForTable()
@@ -95,13 +99,13 @@ extension ProjectsListController {
     
     // Number of rows in a section
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return projectsArrayForTable[section].section.count
+        return projectsArrayForTable[section].rows.count
     }
     
     // Row content
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProjectListCell", for: indexPath)
-        cell.textLabel?.text = "TEST"
+        cell.textLabel?.text = projectsArrayForTable[indexPath.section].rows[indexPath.row]
         return cell
     }
     

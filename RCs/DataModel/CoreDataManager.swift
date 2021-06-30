@@ -30,6 +30,7 @@ class CoreDataManager {
     func addProject(project: Project) {
         let item = NSEntityDescription.entity(forEntityName: "ProjectDM", in: self.context)
         let newItem = ProjectDM(entity: item!, insertInto: self.context)
+        newItem.uniqueId = project.uniqueId
         newItem.clientName = project.clientName
         newItem.clientPrice = project.clientPrice
         newItem.comments = project.comments
@@ -103,7 +104,8 @@ extension CoreDataManager {
                                            revenueCreditShare: i.revenueCreditShare,
                                            comments: i.comments!,
                                            probability: i.probability,
-                                           rcMultiplier: i.rcMultiplier)
+                                           rcMultiplier: i.rcMultiplier,
+                                           uniqueId: i.uniqueId!)
             projects.append(project)
         }
         return projects
@@ -113,7 +115,7 @@ extension CoreDataManager {
     func loadItemsByAttributes(project: Project) -> [ProjectDM] {
         let request: NSFetchRequest<ProjectDM> = NSFetchRequest(entityName: "ProjectDM")
         request.returnsObjectsAsFaults = false
-        let predicate = NSPredicate(format: "clientName = %@ AND projectTitle = %@ AND clientPrice = %f AND expensesRatio = %f AND revenueCreditShare = %f AND comments = %@ AND probability = %f AND rcMultiplier = %f", project.clientName, project.projectTitle, project.clientPrice, project.expensesRatio, project.revenueCreditShare, project.comments, project.probability, project.rcMultiplier)
+        let predicate = NSPredicate(format: "uniqueId = %@", project.uniqueId as CVarArg)
         request.predicate = predicate
         let items = self.loadFromFetchRequest(request: request)
         return items

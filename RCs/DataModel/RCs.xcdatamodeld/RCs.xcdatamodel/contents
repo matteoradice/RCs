@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17709" systemVersion="20F71" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="18154" systemVersion="20F71" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="ProjectDM" representedClassName="ProjectDM" syncable="YES">
         <attribute name="clientName" optional="YES" attributeType="String" defaultValueString=""/>
         <attribute name="clientPrice" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
@@ -9,8 +9,9 @@
         <attribute name="projectTitle" optional="YES" attributeType="String" defaultValueString=""/>
         <attribute name="rcMultiplier" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="revenueCreditShare" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="uniqueId" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
     </entity>
     <elements>
-        <element name="ProjectDM" positionX="-54" positionY="-9" width="128" height="149"/>
+        <element name="ProjectDM" positionX="-54" positionY="-9" width="128" height="164"/>
     </elements>
 </model>
