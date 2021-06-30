@@ -23,8 +23,6 @@
 		D99210C2268098AA00200BE7 /* ProjectDM+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99210C0268098AA00200BE7 /* ProjectDM+CoreDataClass.swift */; };
 		D99210C3268098AA00200BE7 /* ProjectDM+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99210C1268098AA00200BE7 /* ProjectDM+CoreDataProperties.swift */; };
 		D99210CB2680D01400200BE7 /* ProjectsListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99210CA2680D01400200BE7 /* ProjectsListController.swift */; };
-		D99210D52680E86C00200BE7 /* ProjectListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99210D32680E86B00200BE7 /* ProjectListCell.swift */; };
-		D99210D62680E86C00200BE7 /* ProjectListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D99210D42680E86B00200BE7 /* ProjectListCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,8 +44,6 @@
 		D99210C0268098AA00200BE7 /* ProjectDM+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProjectDM+CoreDataClass.swift"; sourceTree = "<group>"; };
 		D99210C1268098AA00200BE7 /* ProjectDM+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProjectDM+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		D99210CA2680D01400200BE7 /* ProjectsListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsListController.swift; sourceTree = "<group>"; };
-		D99210D32680E86B00200BE7 /* ProjectListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectListCell.swift; sourceTree = "<group>"; };
-		D99210D42680E86B00200BE7 /* ProjectListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProjectListCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,7 +128,6 @@
 		D992109A2680893500200BE7 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				D99210D32680E86B00200BE7 /* ProjectListCell.swift */,
 				D99210842680863E00200BE7 /* ViewController.swift */,
 				D99210CA2680D01400200BE7 /* ProjectsListController.swift */,
 				D910FF882681F36D001F73F2 /* AddNewProjectViewController.swift */,
@@ -154,7 +149,6 @@
 			children = (
 				D99210862680863E00200BE7 /* Main.storyboard */,
 				D992108E2680864D00200BE7 /* LaunchScreen.storyboard */,
-				D99210D42680E86B00200BE7 /* ProjectListCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -219,7 +213,6 @@
 				D99210902680864D00200BE7 /* LaunchScreen.storyboard in Resources */,
 				D992108D2680864D00200BE7 /* Assets.xcassets in Resources */,
 				D99210882680863E00200BE7 /* Main.storyboard in Resources */,
-				D99210D62680E86C00200BE7 /* ProjectListCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -237,7 +230,6 @@
 				D99210852680863E00200BE7 /* ViewController.swift in Sources */,
 				D99210812680863E00200BE7 /* AppDelegate.swift in Sources */,
 				D99210CB2680D01400200BE7 /* ProjectsListController.swift in Sources */,
-				D99210D52680E86C00200BE7 /* ProjectListCell.swift in Sources */,
 				D99210C2268098AA00200BE7 /* ProjectDM+CoreDataClass.swift in Sources */,
 				D992109E268089A800200BE7 /* Project.swift in Sources */,
 				D99210832680863E00200BE7 /* SceneDelegate.swift in Sources */,

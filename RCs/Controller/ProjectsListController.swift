@@ -11,59 +11,98 @@ class ProjectsListController: UIViewController, UITableViewDelegate, UITableView
     
     @IBOutlet weak var projectTable: UITableView!
     
-    //  COMPILING INITIAL DATASET
-    //    var testCompiler: TestCompiler = TestCompiler()
+    var fullProjectsArray: [Project] = CoreDataManager.shared.loadAllProjects()
     
-    let fullProjectsArray: [Project] = CoreDataManager.shared.loadAllProjects()
+    struct ProjectsArrayForTable {
+        var section:String!
+        var rows:[String]!
+    }
+    var projectsArrayForTable: [ProjectsArrayForTable] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Preparation of the table (projectTable)
-        let nib = UINib(nibName: "ProjectListCell", bundle: .none)
-        projectTable.register(nib, forCellReuseIdentifier: "ProjectListCell")
         projectTable.delegate = self
         projectTable.dataSource = self
-        
+        projectsArrayForTable = createProjectListArrayForTable()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        fullProjectsArray = CoreDataManager.shared.loadAllProjects()
+        projectTable.reloadData()
+    }
+}
+
+//MARK: - Create projectsArrayForTable
+
+extension ProjectsListController {
+    
+    func createProjectListArrayForTable() -> [ProjectsArrayForTable] {
+        var sectionsList:[String] = []
+        var tempSectionsList:[String] = []
+        var tempProjectsList:[String] = []
+        var project:[ProjectsArrayForTable] = []
+        
+        if fullProjectsArray.count == 0 { return [] }
+        
+        else {
+            
+            for i in fullProjectsArray {
+                sectionsList.append(i.clientName)
+                sectionsList.sort()
+            }
+            
+            for i in 0...sectionsList.count - 1 {
+                if i == 0 { tempSectionsList.append(sectionsList[i]) }
+                else {
+                    if sectionsList[i] == tempSectionsList.last { continue }
+                    else { tempSectionsList.append(sectionsList[i]) }
+                }
+            }
+            
+            sectionsList = tempSectionsList
+            
+            for i in sectionsList {
+                for n in fullProjectsArray {
+                    if n.clientName == i {
+                        tempProjectsList.append(n.projectTitle)
+                    }
+                    tempProjectsList.sort()
+                }
+                project.append(ProjectsArrayForTable(section: i, rows: tempProjectsList))
+                tempProjectsList = []
+                
+            }
+            return project
+        }
+    }
+}
+
+
+
+//MARK: - UITableView Delegate and Data Source methods
+extension ProjectsListController {
+    
+    // Number of sections
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return projectsArrayForTable.count
+    }
+    
+    // Title for the section
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return projectsArrayForTable[section].section
+    }
+    
+    
+    // Number of rows in a section
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return fullProjectsArray.count
+        return projectsArrayForTable[section].section.count
     }
     
+    // Row content
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ProjectListCell", for: indexPath) as! ProjectListCell
-        
-        if fullProjectsArray.count != 0 {
-            
-            let project = fullProjectsArray[indexPath.row]
-            
-            cell.clientLabel.text = project.clientName
-            cell.titleLabel.text = project.projectTitle
-            cell.colorLabel.text = ""
-            
-            if project.probability == 1 { cell.colorLabel.backgroundColor = .systemGreen }
-            
-            else if project.probability > 0 && project.probability < 1 { cell.colorLabel.backgroundColor = .systemOrange }
-            
-            else { cell.colorLabel.backgroundColor = .systemRed }
-            
-            return cell }
-        else { return cell }
-        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ProjectListCell", for: indexPath)
+        cell.textLabel?.text = "TEST"
+        return cell
     }
-    
-    
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
     
 }
