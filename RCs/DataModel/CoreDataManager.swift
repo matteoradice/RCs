@@ -45,8 +45,8 @@ class CoreDataManager {
     
     
     //  OK TESTED
-    func deleteProject(project: Project) {
-        let item = self.loadItemsByAttributes(project: project)[0]
+    func deleteProject(uniqueId: UUID) {
+        let item = self.loadItemsByAttributes(uniqueId: uniqueId)[0]
         self.context.delete(item)
         do {
             try self.context.save()
@@ -112,10 +112,10 @@ extension CoreDataManager {
     }
     
     //  OK TESTED
-    func loadItemsByAttributes(project: Project) -> [ProjectDM] {
+    func loadItemsByAttributes(uniqueId: UUID) -> [ProjectDM] {
         let request: NSFetchRequest<ProjectDM> = NSFetchRequest(entityName: "ProjectDM")
         request.returnsObjectsAsFaults = false
-        let predicate = NSPredicate(format: "uniqueId = %@", project.uniqueId as CVarArg)
+        let predicate = NSPredicate(format: "uniqueId = %@", uniqueId as CVarArg)
         request.predicate = predicate
         let items = self.loadFromFetchRequest(request: request)
         return items

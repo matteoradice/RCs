@@ -10,6 +10,7 @@
 		D910FF892681F36D001F73F2 /* AddNewProjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D910FF882681F36D001F73F2 /* AddNewProjectViewController.swift */; };
 		D953CD68268C7865008CA2DF /* ProjectDM+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D953CD66268C7865008CA2DF /* ProjectDM+CoreDataClass.swift */; };
 		D953CD69268C7865008CA2DF /* ProjectDM+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D953CD67268C7865008CA2DF /* ProjectDM+CoreDataProperties.swift */; };
+		D953CD6B268C8441008CA2DF /* ProjectDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = D953CD6A268C8441008CA2DF /* ProjectDetails.swift */; };
 		D99210812680863E00200BE7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99210802680863E00200BE7 /* AppDelegate.swift */; };
 		D99210832680863E00200BE7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99210822680863E00200BE7 /* SceneDelegate.swift */; };
 		D99210852680863E00200BE7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99210842680863E00200BE7 /* ViewController.swift */; };
@@ -29,6 +30,7 @@
 		D910FF882681F36D001F73F2 /* AddNewProjectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewProjectViewController.swift; sourceTree = "<group>"; };
 		D953CD66268C7865008CA2DF /* ProjectDM+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProjectDM+CoreDataClass.swift"; sourceTree = "<group>"; };
 		D953CD67268C7865008CA2DF /* ProjectDM+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProjectDM+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		D953CD6A268C8441008CA2DF /* ProjectDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectDetails.swift; sourceTree = "<group>"; };
 		D992107D2680863E00200BE7 /* RCs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RCs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D99210802680863E00200BE7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D99210822680863E00200BE7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 				D99210842680863E00200BE7 /* ViewController.swift */,
 				D99210CA2680D01400200BE7 /* ProjectsListController.swift */,
 				D910FF882681F36D001F73F2 /* AddNewProjectViewController.swift */,
+				D953CD6A268C8441008CA2DF /* ProjectDetails.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -225,6 +228,7 @@
 			files = (
 				D953CD68268C7865008CA2DF /* ProjectDM+CoreDataClass.swift in Sources */,
 				D992108B2680863F00200BE7 /* RCs.xcdatamodeld in Sources */,
+				D953CD6B268C8441008CA2DF /* ProjectDetails.swift in Sources */,
 				D99210A1268089B600200BE7 /* AllProjects.swift in Sources */,
 				D910FF892681F36D001F73F2 /* AddNewProjectViewController.swift in Sources */,
 				D99210852680863E00200BE7 /* ViewController.swift in Sources */,

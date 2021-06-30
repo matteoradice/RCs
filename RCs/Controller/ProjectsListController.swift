@@ -11,13 +11,13 @@ class ProjectsListController: UIViewController, UITableViewDelegate, UITableView
     
     @IBOutlet weak var projectTable: UITableView!
     
-    var fullProjectsArray: [Project] = CoreDataManager.shared.loadAllProjects()
-    
     struct ProjectsArrayForTable {
         var section:String!
-        var rows:[String]!
+        var rows:[(UUID, String)]!
     }
     var projectsArrayForTable: [ProjectsArrayForTable] = []
+    
+    var idOfSelectedProject: UUID = UUID()
     
     // get rid of this line if you don't want to initialize the db
     // var testCompiler: TestCompiler = TestCompiler()
@@ -31,19 +31,21 @@ class ProjectsListController: UIViewController, UITableViewDelegate, UITableView
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        fullProjectsArray = CoreDataManager.shared.loadAllProjects()
+        projectsArrayForTable = createProjectListArrayForTable()
         projectTable.reloadData()
     }
+    
 }
 
-//MARK: - Create projectsArrayForTable
+//MARK: - Initialize data structure for this UIViewController
 
 extension ProjectsListController {
     
     func createProjectListArrayForTable() -> [ProjectsArrayForTable] {
+        let fullProjectsArray: [Project] = CoreDataManager.shared.loadAllProjects()
         var sectionsList:[String] = []
         var tempSectionsList:[String] = []
-        var tempProjectsList:[String] = []
+        var tempProjectsList:[(UUID, String)] = []
         var project:[ProjectsArrayForTable] = []
         
         if fullProjectsArray.count == 0 { return [] }
@@ -68,9 +70,8 @@ extension ProjectsListController {
             for i in sectionsList {
                 for n in fullProjectsArray {
                     if n.clientName == i {
-                        tempProjectsList.append(n.projectTitle)
+                        tempProjectsList.append((n.uniqueId, n.projectTitle))
                     }
-                    tempProjectsList.sort()
                 }
                 project.append(ProjectsArrayForTable(section: i, rows: tempProjectsList))
                 tempProjectsList = []
@@ -80,8 +81,6 @@ extension ProjectsListController {
         }
     }
 }
-
-
 
 //MARK: - UITableView Delegate and Data Source methods
 extension ProjectsListController {
@@ -105,8 +104,27 @@ extension ProjectsListController {
     // Row content
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProjectListCell", for: indexPath)
-        cell.textLabel?.text = projectsArrayForTable[indexPath.section].rows[indexPath.row]
+        cell.textLabel?.text = projectsArrayForTable[indexPath.section].rows[indexPath.row].1
         return cell
+    }
+    
+}
+
+//MARK: - Manage the transition across different UIViewControllers
+
+extension ProjectsListController {
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "goToDetail" {
+            print("RUN")
+            if let viewController = segue.destination as? ProjectDetails {
+                viewController.uniqueId = idOfSelectedProject
+            }
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+        idOfSelectedProject = projectsArrayForTable[indexPath.section].rows[indexPath.row].0
     }
     
 }
