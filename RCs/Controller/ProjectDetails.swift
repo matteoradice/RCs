@@ -8,7 +8,7 @@
 import UIKit
 
 class ProjectDetails: UIViewController {
-
+    
     @IBOutlet weak var clientTextField: UITextField!
     @IBOutlet weak var projectTitleTextField: UITextField!
     @IBOutlet weak var projectValueTextField: UITextField!
@@ -22,21 +22,33 @@ class ProjectDetails: UIViewController {
     @IBOutlet weak var probabilitySlider: UISlider!
     @IBOutlet weak var rcMultiplierSlider: UISlider!
     
-    
-    var uniqueId: UUID?
-    var project: [ProjectDM]?
-    
+    var project: Project?
+    var newProject: Project?
+    var changes: Bool = false
+        
     override func viewDidLoad() {
         super.viewDidLoad()
-        project = CoreDataManager.shared.loadItemsByAttributes(uniqueId: uniqueId!)
-        print(project![0].clientName)
         compileFields()
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        //
-    }
     
+    @IBAction func saveButtonPressed(_ sender: UIBarButtonItem) {
+        acquireChanges()
+        if changes == true {
+            let title: String = "Confirm saving"
+            let message: String = "Do you want to save?"
+            let saveConfirmation = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            let okAction: UIAlertAction = UIAlertAction(title: "Ok", style: .default) {UIAlertAction in
+                // Inserire azioni su pressione OK
+            }
+            let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .default) {UIAlertAction in
+                // Inserire azioni su pressione CANCEL
+            }
+            saveConfirmation.addAction(okAction)
+            saveConfirmation.addAction(cancelAction)
+            self.present(saveConfirmation, animated: true, completion: nil)
+        }
+    }
 }
 
 //MARK: - Initialize fields on the UIViewController
@@ -44,21 +56,58 @@ class ProjectDetails: UIViewController {
 extension ProjectDetails {
     
     func compileFields() {
-        clientTextField.text = project![0].clientName
-        projectTitleTextField.text = project![0].projectTitle
-        projectValueTextField.text = String(project![0].clientPrice)
-        commentsTextField.text = project![0].comments
-        
-        expensesSlider.value = project![0].expensesRatio
-        rcShareSlider.value = project![0].revenueCreditShare
-        probabilitySlider.value = project![0].probability
-        rcMultiplierSlider.value = project![0].rcMultiplier
-        
-        expensesLabel.text = String(project![0].expensesRatio)
-        rcShareLabel.text = String(project![0].revenueCreditShare)
-        probabilityLabel.text = String(project![0].probability)
-        rcMultiplierLabel.text = String(project![0].rcMultiplier)
- 
+        clientTextField.text = project!.clientName
+        projectTitleTextField.text = project!.projectTitle
+        projectValueTextField.text = String(project!.clientPrice)
+        commentsTextField.text = project!.comments
+        expensesSlider.value = project!.expensesRatio
+        rcShareSlider.value = project!.revenueCreditShare
+        probabilitySlider.value = project!.probability
+        rcMultiplierSlider.value = project!.rcMultiplier
+        expensesLabel.text = String(project!.expensesRatio)
+        rcShareLabel.text = String(project!.revenueCreditShare)
+        probabilityLabel.text = String(project!.probability)
+        rcMultiplierLabel.text = String(project!.rcMultiplier)
+    }
+}
+
+//MARK: - Import all the changes made in the fields for saving
+
+extension ProjectDetails {
+    
+    func acquireChanges() {
+        if newProject?.clientName != clientTextField.text! {
+            newProject?.clientName = clientTextField.text!
+            changes = true
+        }
+        if newProject?.projectTitle != projectTitleTextField.text! {
+            newProject?.projectTitle = projectTitleTextField.text!
+            changes = true
+        }
+        if newProject?.clientPrice != Float(projectValueTextField.text!)! {
+            newProject?.clientPrice = Float(projectValueTextField.text!)!
+            changes = true
+        }
+        if newProject?.comments != commentsTextField.text! {
+            newProject?.comments = commentsTextField.text!
+            changes = true
+        }
+        if newProject?.expensesRatio != expensesSlider.value {
+            newProject?.expensesRatio = expensesSlider.value
+            changes = true
+        }
+        if newProject?.rcMultiplier != rcMultiplierSlider.value {
+            newProject?.rcMultiplier = rcMultiplierSlider.value
+            changes = true
+        }
+        if newProject?.revenueCreditShare != rcShareSlider.value {
+            newProject?.revenueCreditShare = rcShareSlider.value
+            changes = true
+        }
+        if newProject?.probability != probabilitySlider.value {
+            newProject?.probability = probabilitySlider.value
+            changes = true
+        }
     }
     
 }

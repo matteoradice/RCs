@@ -43,7 +43,6 @@ class CoreDataManager {
         catch let error { print(error) }
     }
     
-    
     //  OK TESTED
     func deleteProject(uniqueId: UUID) {
         let item = self.loadItemsByAttributes(uniqueId: uniqueId)[0]
@@ -94,7 +93,7 @@ extension CoreDataManager {
     }
     
     //  OK TESTED
-    private func convertProjectDMInProject(projectDM: [ProjectDM]) -> [Project] {
+    func convertProjectDMInProject(projectDM: [ProjectDM]) -> [Project] {
         var projects: [Project] = []
         for i in projectDM {
             let project: Project = Project(clientName: i.clientName!,
