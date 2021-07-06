@@ -9,19 +9,20 @@ import UIKit
 
 class ProjectCell: UITableViewCell {
 
+    @IBOutlet weak var semaphoreView: UIView!
+    @IBOutlet weak var labelView: UIView!
+    @IBOutlet weak var disclosureView: UIView!
+    
     @IBOutlet weak var semaphoreImage: UIImageView!
-    @IBOutlet weak var projectTitleLabel: UILabel!
-    @IBOutlet weak var modifyImage: UIImageView!
+    @IBOutlet weak var projectLabel: UILabel!
+    @IBOutlet weak var disclosureImage: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
 }

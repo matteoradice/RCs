@@ -103,14 +103,15 @@ extension ProjectsListController {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "ProjectCell", for: indexPath) as! ProjectCell
         if projectsArrayForTable.count > 0 {
-            cell.projectTitleLabel.text = projectsArrayForTable[indexPath.section].rows[indexPath.row].1
+            cell.projectLabel.text = projectsArrayForTable[indexPath.section].rows[indexPath.row].1
             let probability: Float = CoreDataManager.shared.loadItemsByAttributes(uniqueId: projectsArrayForTable[indexPath.section].rows[indexPath.row].0)[0].probability
-            if probability == 1 { cell.semaphoreImage.backgroundColor = .systemGreen }
-            else if probability == 0 { cell.semaphoreImage.backgroundColor = .systemRed}
-            else { cell.semaphoreImage.backgroundColor = .systemYellow }
+            if probability == 1 { cell.semaphoreImage.image = UIImage(named: "project_image") }
+            else if probability == 0 { cell.semaphoreImage.image = UIImage(named: "lost_image")}
+            else { cell.semaphoreImage.image = UIImage(named: "lead_image") }
         }
-        else { cell.projectTitleLabel.text = "No entries yet"}
-        return cell
+        else { cell.projectLabel.text = "No entries yet"}
+
+ return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -132,6 +133,15 @@ extension ProjectsListController {
         view.addSubview(title)
         return view
     }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            CoreDataManager.shared.deleteProject(uniqueId: projectsArrayForTable[indexPath.section].rows[indexPath.row].0)
+            projectsArrayForTable = createProjectListArrayForTable()
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
+    }
+    
 }
 
 //MARK: - Manage the transition across different UIViewControllers
