@@ -19,10 +19,7 @@ class ProjectsListController: UIViewController, UITableViewDelegate, UITableView
     
     var idOfSelectedProject: UUID = UUID()
     var selectedProject: Project?
-    
-    // get rid of this line if you don't want to initialize the db
-    // var testCompiler: TestCompiler = TestCompiler()
-    
+        
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,10 +27,7 @@ class ProjectsListController: UIViewController, UITableViewDelegate, UITableView
         projectTable.delegate = self
         projectTable.dataSource = self
         projectsArrayForTable = createProjectListArrayForTable()
-        
-        // use this line if you want to delete the entire database
-        // CoreDataManager.shared.deleteAllProjects()
-        
+                
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -136,7 +130,3 @@ extension ProjectsListController {
         performSegue(withIdentifier: "goToDetail", sender: self)
     }
 }
-
-// TIM something
-// Andrew Stolben
-// CBA well known example ** MCK client

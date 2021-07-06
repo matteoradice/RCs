@@ -14,7 +14,7 @@ struct RcManager {
     func calculateWeightedRcs() -> String {
         var rcs: Float = 0
         for i in allProjects {
-            rcs += i.probability * i.revenueCreditShare * (i.clientPrice - (i.clientPrice * i.expensesRatio))
+            rcs += i.probability * i.revenueCreditShare * (i.clientPrice / (1 + i.expensesRatio))
         }
         return String(rcs)
     }
@@ -23,7 +23,7 @@ struct RcManager {
         var rcs: Float = 0
         for i in allProjects {
             if i.probability == 1 {
-                rcs += i.probability * i.revenueCreditShare * (i.clientPrice - (i.clientPrice * i.expensesRatio))
+                rcs += i.probability * i.revenueCreditShare * (i.clientPrice / (1 + i.expensesRatio))
             }
         }
         return String(rcs)

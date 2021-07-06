@@ -13,11 +13,18 @@ class rcRecapController: UIViewController {
     @IBOutlet weak var soldRcLabel: UILabel!
     
     let rcManager = RcManager()
-    
+    var weightedRc: String = ""
+    var soldRc: String = ""
+        
+        
     override func viewDidLoad() {
         super.viewDidLoad()
-        weightedRcLabel.text = rcManager.calculateWeightedRcs()
-        soldRcLabel.text = rcManager.calculateSoldRcs()
+        
+        weightedRc = rcManager.calculateWeightedRcs()
+        soldRc = rcManager.calculateSoldRcs()
+        
+        weightedRcLabel.text = weightedRc
+        soldRcLabel.text = soldRc
     }
     
 }

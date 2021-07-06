@@ -23,8 +23,6 @@
 		D99210902680864D00200BE7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D992108E2680864D00200BE7 /* LaunchScreen.storyboard */; };
 		D992109E268089A800200BE7 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = D992109D268089A800200BE7 /* Project.swift */; };
 		D99210A1268089B600200BE7 /* AllProjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99210A0268089B600200BE7 /* AllProjects.swift */; };
-		D99210AA26808A6D00200BE7 /* SimulateRcs.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99210A926808A6D00200BE7 /* SimulateRcs.swift */; };
-		D99210AD26808A7B00200BE7 /* TestCompiler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99210AC26808A7B00200BE7 /* TestCompiler.swift */; };
 		D99210B026808B0600200BE7 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99210AF26808B0600200BE7 /* CoreDataManager.swift */; };
 		D99210CB2680D01400200BE7 /* ProjectsListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99210CA2680D01400200BE7 /* ProjectsListController.swift */; };
 /* End PBXBuildFile section */
@@ -48,8 +46,6 @@
 		D99210912680864D00200BE7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D992109D268089A800200BE7 /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
 		D99210A0268089B600200BE7 /* AllProjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllProjects.swift; sourceTree = "<group>"; };
-		D99210A926808A6D00200BE7 /* SimulateRcs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimulateRcs.swift; sourceTree = "<group>"; };
-		D99210AC26808A7B00200BE7 /* TestCompiler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCompiler.swift; sourceTree = "<group>"; };
 		D99210AF26808B0600200BE7 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		D99210CA2680D01400200BE7 /* ProjectsListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsListController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -77,8 +73,6 @@
 		D910FF852680F555001F73F2 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				D99210A926808A6D00200BE7 /* SimulateRcs.swift */,
-				D99210AC26808A7B00200BE7 /* TestCompiler.swift */,
 				D953CD7026945262008CA2DF /* RcManager.swift */,
 			);
 			path = Models;
@@ -249,8 +243,6 @@
 				D992109E268089A800200BE7 /* Project.swift in Sources */,
 				D99210832680863E00200BE7 /* SceneDelegate.swift in Sources */,
 				D953CD69268C7865008CA2DF /* ProjectDM+CoreDataProperties.swift in Sources */,
-				D99210AA26808A6D00200BE7 /* SimulateRcs.swift in Sources */,
-				D99210AD26808A7B00200BE7 /* TestCompiler.swift in Sources */,
 				D99210B026808B0600200BE7 /* CoreDataManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
