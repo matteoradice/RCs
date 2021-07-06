@@ -15,11 +15,14 @@ class ProjectsListController: UIViewController, UITableViewDelegate, UITableView
         var section:String!
         var rows:[(UUID, String)]!
     }
+    
     var projectsArrayForTable: [ProjectsArrayForTable] = []
     
     var idOfSelectedProject: UUID = UUID()
     var selectedProject: Project?
-        
+    
+    let colors: [UIColor] = [.lightGray, .gray]
+    let headerHeight: CGFloat = 60
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -88,27 +91,39 @@ extension ProjectsListController {
     
     // Number of sections
     func numberOfSections(in tableView: UITableView) -> Int {
-        return projectsArrayForTable.count
+        if projectsArrayForTable.count > 0 { return projectsArrayForTable.count }
+        else { return 1 }
     }
-    
-    // Title for the section
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return projectsArrayForTable[section].section
-    }
-    
     
     // Number of rows in a section
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return projectsArrayForTable[section].rows.count
+        if projectsArrayForTable.count > 0 { return projectsArrayForTable[section].rows.count }
+        else { return 1 }
     }
     
     // Row content
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProjectListCell", for: indexPath)
-        cell.textLabel?.text = projectsArrayForTable[indexPath.section].rows[indexPath.row].1
+        if projectsArrayForTable.count > 0 { cell.textLabel?.text = projectsArrayForTable[indexPath.section].rows[indexPath.row].1 }
+        else { cell.textLabel?.text = "No entries yet"}
         return cell
     }
     
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return headerHeight
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let distanceHeaderTitleFromLead: CGFloat = 10
+        let view: UIView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: headerHeight))
+        let title: UILabel = UILabel(frame: CGRect(x: distanceHeaderTitleFromLead, y: 0, width: view.bounds.width - distanceHeaderTitleFromLead, height: view.bounds.height))
+        if section % 2 == 0 { view.backgroundColor = colors[0] }
+        else { view.backgroundColor = colors[1] }
+        if projectsArrayForTable.count > 0 { title.text = projectsArrayForTable[section].section }
+        else { title.text = "No entries yet" }
+        view.addSubview(title)
+        return view
+    }
 }
 
 //MARK: - Manage the transition across different UIViewControllers
