@@ -21,24 +21,22 @@ class ProjectsListController: UIViewController, UITableViewDelegate, UITableView
     var idOfSelectedProject: UUID = UUID()
     var selectedProject: Project?
     
-    let colors: [UIColor] = [.lightGray, .gray]
-    let headerHeight: CGFloat = 60
+    let colors: [UIColor] = [.systemGray, .systemGray]
+    let headerHeight: CGFloat = 40
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         projectTable.delegate = self
         projectTable.dataSource = self
+        let nib: UINib = UINib(nibName: "ProjectCell", bundle: nil)
+        projectTable.register(nib, forCellReuseIdentifier: "ProjectCell")
         projectsArrayForTable = createProjectListArrayForTable()
-                
     }
     
     override func viewDidAppear(_ animated: Bool) {
         projectsArrayForTable = createProjectListArrayForTable()
         projectTable.reloadData()
     }
-    
-    
 }
 
 //MARK: - Initialize data structure for this UIViewController
@@ -103,10 +101,20 @@ extension ProjectsListController {
     
     // Row content
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ProjectListCell", for: indexPath)
-        if projectsArrayForTable.count > 0 { cell.textLabel?.text = projectsArrayForTable[indexPath.section].rows[indexPath.row].1 }
-        else { cell.textLabel?.text = "No entries yet"}
+                let cell = tableView.dequeueReusableCell(withIdentifier: "ProjectCell", for: indexPath) as! ProjectCell
+        if projectsArrayForTable.count > 0 {
+            cell.projectTitleLabel.text = projectsArrayForTable[indexPath.section].rows[indexPath.row].1
+            let probability: Float = CoreDataManager.shared.loadItemsByAttributes(uniqueId: projectsArrayForTable[indexPath.section].rows[indexPath.row].0)[0].probability
+            if probability == 1 { cell.semaphoreImage.backgroundColor = .systemGreen }
+            else if probability == 0 { cell.semaphoreImage.backgroundColor = .systemRed}
+            else { cell.semaphoreImage.backgroundColor = .systemYellow }
+        }
+        else { cell.projectTitleLabel.text = "No entries yet"}
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 40
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

@@ -40,7 +40,7 @@ class AddNewProjectViewController: UIViewController {
         for i in slidersAndLabels {
             slider = i.key
             label = i.value
-            label.text = String(slider.value)
+            label.text = String(format: "%.1f", slider.value)
         }
         for i in textFields {
             i.text = ""
@@ -52,7 +52,7 @@ class AddNewProjectViewController: UIViewController {
         for i in slidersAndLabels {
             if i.key == sender { receiver = i.value }
         }
-        receiver.text = String(sender.value)
+        receiver.text = String(format: "%.1f", sender.value)
     }
     
     @IBAction func saveButtonPressed(_ sender: UIBarButtonItem) {

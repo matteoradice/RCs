@@ -14,9 +14,10 @@
 		D953CD6D26944FFE008CA2DF /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D953CD6C26944FFE008CA2DF /* SettingsController.swift */; };
 		D953CD6F269451B4008CA2DF /* rcRecapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D953CD6E269451B4008CA2DF /* rcRecapController.swift */; };
 		D953CD7126945262008CA2DF /* RcManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D953CD7026945262008CA2DF /* RcManager.swift */; };
+		D953CD742694A2E4008CA2DF /* ProjectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D953CD722694A2E4008CA2DF /* ProjectCell.swift */; };
+		D953CD752694A2E4008CA2DF /* ProjectCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D953CD732694A2E4008CA2DF /* ProjectCell.xib */; };
 		D99210812680863E00200BE7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99210802680863E00200BE7 /* AppDelegate.swift */; };
 		D99210832680863E00200BE7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99210822680863E00200BE7 /* SceneDelegate.swift */; };
-		D99210852680863E00200BE7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99210842680863E00200BE7 /* ViewController.swift */; };
 		D99210882680863E00200BE7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D99210862680863E00200BE7 /* Main.storyboard */; };
 		D992108B2680863F00200BE7 /* RCs.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D99210892680863F00200BE7 /* RCs.xcdatamodeld */; };
 		D992108D2680864D00200BE7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D992108C2680864D00200BE7 /* Assets.xcassets */; };
@@ -35,10 +36,11 @@
 		D953CD6C26944FFE008CA2DF /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		D953CD6E269451B4008CA2DF /* rcRecapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = rcRecapController.swift; sourceTree = "<group>"; };
 		D953CD7026945262008CA2DF /* RcManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RcManager.swift; sourceTree = "<group>"; };
+		D953CD722694A2E4008CA2DF /* ProjectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCell.swift; sourceTree = "<group>"; };
+		D953CD732694A2E4008CA2DF /* ProjectCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProjectCell.xib; sourceTree = "<group>"; };
 		D992107D2680863E00200BE7 /* RCs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RCs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D99210802680863E00200BE7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D99210822680863E00200BE7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		D99210842680863E00200BE7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		D99210872680863E00200BE7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D992108A2680863F00200BE7 /* RCs.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RCs.xcdatamodel; sourceTree = "<group>"; };
 		D992108C2680864D00200BE7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -131,7 +133,7 @@
 		D992109A2680893500200BE7 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				D99210842680863E00200BE7 /* ViewController.swift */,
+				D953CD722694A2E4008CA2DF /* ProjectCell.swift */,
 				D99210CA2680D01400200BE7 /* ProjectsListController.swift */,
 				D910FF882681F36D001F73F2 /* AddNewProjectViewController.swift */,
 				D953CD6A268C8441008CA2DF /* ProjectDetails.swift */,
@@ -155,6 +157,7 @@
 			children = (
 				D99210862680863E00200BE7 /* Main.storyboard */,
 				D992108E2680864D00200BE7 /* LaunchScreen.storyboard */,
+				D953CD732694A2E4008CA2DF /* ProjectCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -219,6 +222,7 @@
 				D99210902680864D00200BE7 /* LaunchScreen.storyboard in Resources */,
 				D992108D2680864D00200BE7 /* Assets.xcassets in Resources */,
 				D99210882680863E00200BE7 /* Main.storyboard in Resources */,
+				D953CD752694A2E4008CA2DF /* ProjectCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -232,10 +236,10 @@
 				D953CD68268C7865008CA2DF /* ProjectDM+CoreDataClass.swift in Sources */,
 				D992108B2680863F00200BE7 /* RCs.xcdatamodeld in Sources */,
 				D953CD6B268C8441008CA2DF /* ProjectDetails.swift in Sources */,
+				D953CD742694A2E4008CA2DF /* ProjectCell.swift in Sources */,
 				D953CD7126945262008CA2DF /* RcManager.swift in Sources */,
 				D99210A1268089B600200BE7 /* AllProjects.swift in Sources */,
 				D910FF892681F36D001F73F2 /* AddNewProjectViewController.swift in Sources */,
-				D99210852680863E00200BE7 /* ViewController.swift in Sources */,
 				D953CD6F269451B4008CA2DF /* rcRecapController.swift in Sources */,
 				D953CD6D26944FFE008CA2DF /* SettingsController.swift in Sources */,
 				D99210812680863E00200BE7 /* AppDelegate.swift in Sources */,
