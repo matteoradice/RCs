@@ -10,6 +10,7 @@ import UIKit
 
 class Project {
     
+    
     // Attributes
     var clientName: String
     var projectTitle: String

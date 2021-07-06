@@ -68,7 +68,28 @@ class CoreDataManager {
             }
         }
     }
-}
+    
+    
+    func saveItem(project: Project) {
+        let item = self.loadItemsByAttributes(uniqueId: project.uniqueId)[0]
+        item.clientName = project.clientName
+        item.clientPrice = project.clientPrice
+        item.comments = project.comments
+        item.expensesRatio = project.expensesRatio
+        item.probability = project.probability
+        item.projectTitle = project.projectTitle
+        item.rcMultiplier = project.rcMultiplier
+        item.revenueCreditShare = project.revenueCreditShare
+        do {
+            try self.context.save()
+        } catch let error {
+            print(error)
+        }
+    }
+    }
+    
+    
+
     
         
   

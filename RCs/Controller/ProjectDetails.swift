@@ -25,36 +25,21 @@ class ProjectDetails: UIViewController {
     var project: Project?
     var newProject: Project?
     var changes: Bool = false
-        
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         compileFields()
     }
     
-    
     @IBAction func saveButtonPressed(_ sender: UIBarButtonItem) {
         acquireChanges()
-        if changes == true {
-            let title: String = "Confirm saving"
-            let message: String = "Do you want to save?"
-            let saveConfirmation = UIAlertController(title: title, message: message, preferredStyle: .alert)
-            let okAction: UIAlertAction = UIAlertAction(title: "Ok", style: .default) {UIAlertAction in
-                // Inserire azioni su pressione OK
-            }
-            let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .default) {UIAlertAction in
-                // Inserire azioni su pressione CANCEL
-            }
-            saveConfirmation.addAction(okAction)
-            saveConfirmation.addAction(cancelAction)
-            self.present(saveConfirmation, animated: true, completion: nil)
-        }
+        saveNewItem()
     }
 }
 
 //MARK: - Initialize fields on the UIViewController
 
 extension ProjectDetails {
-    
     func compileFields() {
         clientTextField.text = project!.clientName
         projectTitleTextField.text = project!.projectTitle
@@ -76,38 +61,36 @@ extension ProjectDetails {
 extension ProjectDetails {
     
     func acquireChanges() {
-        if newProject?.clientName != clientTextField.text! {
-            newProject?.clientName = clientTextField.text!
-            changes = true
-        }
-        if newProject?.projectTitle != projectTitleTextField.text! {
-            newProject?.projectTitle = projectTitleTextField.text!
-            changes = true
-        }
-        if newProject?.clientPrice != Float(projectValueTextField.text!)! {
-            newProject?.clientPrice = Float(projectValueTextField.text!)!
-            changes = true
-        }
-        if newProject?.comments != commentsTextField.text! {
-            newProject?.comments = commentsTextField.text!
-            changes = true
-        }
-        if newProject?.expensesRatio != expensesSlider.value {
-            newProject?.expensesRatio = expensesSlider.value
-            changes = true
-        }
-        if newProject?.rcMultiplier != rcMultiplierSlider.value {
-            newProject?.rcMultiplier = rcMultiplierSlider.value
-            changes = true
-        }
-        if newProject?.revenueCreditShare != rcShareSlider.value {
-            newProject?.revenueCreditShare = rcShareSlider.value
-            changes = true
-        }
-        if newProject?.probability != probabilitySlider.value {
-            newProject?.probability = probabilitySlider.value
-            changes = true
-        }
+        let clientName = clientTextField.text!
+        let projectTitle = projectTitleTextField.text!
+        let clientPrice = Float(projectValueTextField.text!)!
+        let comments = commentsTextField.text!
+        let expensesRatio = expensesSlider.value
+        let rcMultiplier = rcMultiplierSlider.value
+        let revenueCreditShare = rcShareSlider.value
+        let probability = probabilitySlider.value
+        
+        newProject = Project(clientName: clientName, projectTitle: projectTitle, clientPrice: clientPrice, expensesRatio: expensesRatio, revenueCreditShare: revenueCreditShare, comments: comments, probability: probability, rcMultiplier: rcMultiplier)
+        
+        if newProject?.clientName == project?.clientName && newProject?.clientPrice == project?.clientPrice && newProject?.comments == project?.comments && newProject?.probability == project?.probability && newProject?.rcMultiplier == project?.rcMultiplier && newProject?.projectTitle == project?.projectTitle && newProject?.revenueCreditShare == project?.revenueCreditShare {
+            changes = false
+        } else { changes = true }
     }
-    
+}
+
+
+extension ProjectDetails {
+    func saveNewItem() {
+            let title: String = "Confirm saving"
+            let message: String = "Do you want to save?"
+            let saveConfirmation = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            let okAction: UIAlertAction = UIAlertAction(title: "Ok", style: .default) {UIAlertAction in
+                CoreDataManager.shared.addProject(project: self.newProject!)
+            }
+            let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .default) { UIAlertAction in saveConfirmation.dismiss(animated: true) }
+            saveConfirmation.addAction(okAction)
+            saveConfirmation.addAction(cancelAction)
+            self.present(saveConfirmation, animated: true, completion: nil)
+            CoreDataManager.shared.deleteProject(uniqueId: project!.uniqueId)
+    }
 }
