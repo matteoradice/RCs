@@ -8,19 +8,18 @@
 import UIKit
 
 class ProjectCell: UITableViewCell {
-
-    @IBOutlet weak var semaphoreView: UIView!
-    @IBOutlet weak var labelView: UIView!
-    @IBOutlet weak var disclosureView: UIView!
     
-    @IBOutlet weak var semaphoreImage: UIImageView!
-    @IBOutlet weak var projectLabel: UILabel!
-    @IBOutlet weak var disclosureImage: UIImageView!
+    
+    @IBOutlet weak var probabilityIconImage: UIImageView!
+    @IBOutlet weak var projectTitleLabel: UILabel!
+    @IBOutlet weak var rcLabel: UILabel!
+    @IBOutlet weak var probabilityLabel: UILabel!
+    @IBOutlet weak var rcShareLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }

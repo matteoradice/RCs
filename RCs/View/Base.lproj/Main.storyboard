@@ -64,7 +64,7 @@
                     <navigationItem key="navigationItem" id="6Zy-ot-oTK"/>
                     <connections>
                         <outlet property="projectTable" destination="9Ej-Cp-1uq" id="zZy-3c-Apm"/>
-                        <segue destination="iTB-8L-Dox" kind="push" identifier="goToDetail" id="fFU-4r-hM7"/>
+                        <segue destination="iTB-8L-Dox" kind="show" identifier="goToDetail" id="fFU-4r-hM7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Z2-UW-9Hh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

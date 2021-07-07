@@ -49,16 +49,12 @@ extension ProjectsListController {
         var tempSectionsList:[String] = []
         var tempProjectsList:[(UUID, String)] = []
         var project:[ProjectsArrayForTable] = []
-        
         if fullProjectsArray.count == 0 { return [] }
-        
         else {
-            
             for i in fullProjectsArray {
                 sectionsList.append(i.clientName)
                 sectionsList.sort()
             }
-            
             for i in 0...sectionsList.count - 1 {
                 if i == 0 { tempSectionsList.append(sectionsList[i]) }
                 else {
@@ -66,7 +62,6 @@ extension ProjectsListController {
                     else { tempSectionsList.append(sectionsList[i]) }
                 }
             }
-            
             sectionsList = tempSectionsList
             
             for i in sectionsList {
@@ -101,21 +96,29 @@ extension ProjectsListController {
     
     // Row content
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-                let cell = tableView.dequeueReusableCell(withIdentifier: "ProjectCell", for: indexPath) as! ProjectCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ProjectCell", for: indexPath) as! ProjectCell
         if projectsArrayForTable.count > 0 {
-            cell.projectLabel.text = projectsArrayForTable[indexPath.section].rows[indexPath.row].1
-            let probability: Float = CoreDataManager.shared.loadItemsByAttributes(uniqueId: projectsArrayForTable[indexPath.section].rows[indexPath.row].0)[0].probability
-            if probability == 1 { cell.semaphoreImage.image = UIImage(named: "project_image") }
-            else if probability == 0 { cell.semaphoreImage.image = UIImage(named: "lost_image")}
-            else { cell.semaphoreImage.image = UIImage(named: "lead_image") }
+            let valuesForCell: [String] = populateCell(indexPath: indexPath)
+            cell.projectTitleLabel.text = valuesForCell[0]
+            cell.rcLabel.text = valuesForCell[1]
+            cell.probabilityLabel.text = valuesForCell[2]
+            cell.rcShareLabel.text = valuesForCell[3]
+            if Float(valuesForCell[2]) == 1 { cell.probabilityIconImage.image = UIImage(named: "project_image") }
+            else if Float(valuesForCell[2]) == 0 { cell.probabilityIconImage.image = UIImage(named: "lost_image")}
+            else { cell.probabilityIconImage.image = UIImage(named: "lead_image") }
         }
-        else { cell.projectLabel.text = "No entries yet"}
-
- return cell
+        else {
+            cell.projectTitleLabel.text = "-"
+            cell.rcLabel.text = "-"
+            cell.probabilityLabel.text = "-"
+            cell.rcShareLabel.text = "-"
+        }
+        
+        return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 40
+        return 80
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -162,4 +165,21 @@ extension ProjectsListController {
         selectedProject = CoreDataManager.shared.convertProjectDMInProject(projectDM: selectedProjectDM)[0]
         performSegue(withIdentifier: "goToDetail", sender: self)
     }
+}
+
+
+//MARK: - Method to populate cells
+
+extension ProjectsListController {
+    
+    func populateCell(indexPath: IndexPath) -> [String] {
+        let uuid: UUID = projectsArrayForTable[indexPath.section].rows[indexPath.row].0
+        let title: String = CoreDataManager.shared.loadItemsByAttributes(uniqueId: uuid)[0].projectTitle!
+        let value: String = String(format: "%.1f", CoreDataManager.shared.loadItemsByAttributes(uniqueId: uuid)[0].clientPrice)
+        let probability: String = String(format: "%.1f", CoreDataManager.shared.loadItemsByAttributes(uniqueId: uuid)[0].probability)
+        let rcShare: String = String(format: "%.1f", CoreDataManager.shared.loadItemsByAttributes(uniqueId: uuid)[0].revenueCreditShare)
+        
+        return [title, value, probability, rcShare]
+    }
+    
 }
