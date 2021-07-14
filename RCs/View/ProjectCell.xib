@@ -27,16 +27,16 @@
                                         <rect key="frame" x="0.0" y="0.0" width="30" height="38"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nLS-fb-apX" userLabel="Probability Icon_Image">
-                                                <rect key="frame" x="0.0" y="0.0" width="30" height="38"/>
+                                                <rect key="frame" x="5" y="5" width="20" height="28"/>
                                             </imageView>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="30" id="86N-oI-t8i"/>
-                                            <constraint firstAttribute="bottom" secondItem="nLS-fb-apX" secondAttribute="bottom" id="Xh4-FQ-YRn"/>
-                                            <constraint firstItem="nLS-fb-apX" firstAttribute="top" secondItem="fN2-8Q-t87" secondAttribute="top" id="dyG-SB-QAF"/>
-                                            <constraint firstAttribute="trailing" secondItem="nLS-fb-apX" secondAttribute="trailing" id="g54-DT-yBd"/>
-                                            <constraint firstItem="nLS-fb-apX" firstAttribute="leading" secondItem="fN2-8Q-t87" secondAttribute="leading" id="v2g-DB-6bH"/>
+                                            <constraint firstAttribute="bottom" secondItem="nLS-fb-apX" secondAttribute="bottom" constant="5" id="Xh4-FQ-YRn"/>
+                                            <constraint firstItem="nLS-fb-apX" firstAttribute="top" secondItem="fN2-8Q-t87" secondAttribute="top" constant="5" id="dyG-SB-QAF"/>
+                                            <constraint firstAttribute="trailing" secondItem="nLS-fb-apX" secondAttribute="trailing" constant="5" id="g54-DT-yBd"/>
+                                            <constraint firstItem="nLS-fb-apX" firstAttribute="leading" secondItem="fN2-8Q-t87" secondAttribute="leading" constant="5" id="v2g-DB-6bH"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dd0-Gg-6o6" userLabel="Project Title_View">

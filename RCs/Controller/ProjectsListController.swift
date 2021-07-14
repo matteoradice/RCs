@@ -15,14 +15,13 @@ class ProjectsListController: UIViewController, UITableViewDelegate, UITableView
         var section:String!
         var rows:[(UUID, String)]!
     }
-    
     var projectsArrayForTable: [ProjectsArrayForTable] = []
     
     var idOfSelectedProject: UUID = UUID()
     var selectedProject: Project?
     
-    let colors: [UIColor] = [.systemGray, .systemGray]
-    let headerHeight: CGFloat = 40
+    let colors: [UIColor] = [.lightGray, .lightGray]
+    let headerHeight: CGFloat = 30
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,7 +41,6 @@ class ProjectsListController: UIViewController, UITableViewDelegate, UITableView
 //MARK: - Initialize data structure for this UIViewController
 
 extension ProjectsListController {
-    
     func createProjectListArrayForTable() -> [ProjectsArrayForTable] {
         let fullProjectsArray: [Project] = CoreDataManager.shared.loadAllProjects()
         var sectionsList:[String] = []
@@ -72,7 +70,6 @@ extension ProjectsListController {
                 }
                 project.append(ProjectsArrayForTable(section: i, rows: tempProjectsList))
                 tempProjectsList = []
-                
             }
             return project
         }
@@ -84,20 +81,17 @@ extension ProjectsListController {
     
     // Number of sections
     func numberOfSections(in tableView: UITableView) -> Int {
-        if projectsArrayForTable.count > 0 { return projectsArrayForTable.count }
-        else { return 1 }
+        return projectsArrayForTable.count
     }
     
     // Number of rows in a section
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if projectsArrayForTable.count > 0 { return projectsArrayForTable[section].rows.count }
-        else { return 1 }
+        return projectsArrayForTable[section].rows.count
     }
     
     // Row content
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProjectCell", for: indexPath) as! ProjectCell
-        if projectsArrayForTable.count > 0 {
             let valuesForCell: [String] = populateCell(indexPath: indexPath)
             cell.projectTitleLabel.text = valuesForCell[0]
             cell.rcLabel.text = valuesForCell[1]
@@ -106,29 +100,25 @@ extension ProjectsListController {
             if Float(valuesForCell[2]) == 1 { cell.probabilityIconImage.image = UIImage(named: "project_image") }
             else if Float(valuesForCell[2]) == 0 { cell.probabilityIconImage.image = UIImage(named: "lost_image")}
             else { cell.probabilityIconImage.image = UIImage(named: "lead_image") }
-        }
-        else {
-            cell.projectTitleLabel.text = "-"
-            cell.rcLabel.text = "-"
-            cell.probabilityLabel.text = "-"
-            cell.rcShareLabel.text = "-"
-        }
-        
         return cell
     }
     
+    // Height of the rows
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80
     }
     
+    // Height of the header
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return headerHeight
     }
     
+    // Personalized headers (color)
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let distanceHeaderTitleFromLead: CGFloat = 10
         let view: UIView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: headerHeight))
         let title: UILabel = UILabel(frame: CGRect(x: distanceHeaderTitleFromLead, y: 0, width: view.bounds.width - distanceHeaderTitleFromLead, height: view.bounds.height))
+        title.font = UIFont(name: "Helvetica Neue Bold", size: 12)
         if section % 2 == 0 { view.backgroundColor = colors[0] }
         else { view.backgroundColor = colors[1] }
         if projectsArrayForTable.count > 0 { title.text = projectsArrayForTable[section].section }
@@ -137,28 +127,20 @@ extension ProjectsListController {
         return view
     }
     
+    // Delete rows routine
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             CoreDataManager.shared.deleteProject(uniqueId: projectsArrayForTable[indexPath.section].rows[indexPath.row].0)
-            projectsArrayForTable = createProjectListArrayForTable()
+            projectsArrayForTable[indexPath.section].rows.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
-        }
-    }
-    
-}
-
-//MARK: - Manage the transition across different UIViewControllers
-
-extension ProjectsListController {
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "goToDetail" {
-            if let viewController = segue.destination as? ProjectDetails {
-                viewController.project = selectedProject!
+            if projectsArrayForTable[indexPath.section].rows.count == 0 {
+                projectsArrayForTable.remove(at: indexPath.section)
+                tableView.deleteSections(NSIndexSet(index: indexPath.section) as IndexSet, with: .fade)
             }
         }
     }
-    
+
+    // Selection of a row and call segue
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let id = projectsArrayForTable[indexPath.section].rows[indexPath.row].0
         let selectedProjectDM = CoreDataManager.shared.loadItemsByAttributes(uniqueId: id)
@@ -167,11 +149,22 @@ extension ProjectsListController {
     }
 }
 
-
-//MARK: - Method to populate cells
+//MARK: - Manage the transition across different UIViewControllers
 
 extension ProjectsListController {
-    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "goToDetail" {
+            if let viewController = segue.destination as? ProjectDetails {
+                viewController.project = selectedProject!
+            }
+        }
+    }
+}
+
+
+//MARK: - Populate customized cells
+
+extension ProjectsListController {
     func populateCell(indexPath: IndexPath) -> [String] {
         let uuid: UUID = projectsArrayForTable[indexPath.section].rows[indexPath.row].0
         let title: String = CoreDataManager.shared.loadItemsByAttributes(uniqueId: uuid)[0].projectTitle!
@@ -181,5 +174,4 @@ extension ProjectsListController {
         
         return [title, value, probability, rcShare]
     }
-    
 }
