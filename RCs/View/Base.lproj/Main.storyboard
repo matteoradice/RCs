@@ -37,39 +37,143 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9Ej-Cp-1uq">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="fJE-5r-8Vc">
                                 <rect key="frame" x="0.0" y="88" width="414" height="725"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ProjectListCell" id="hOV-Yo-7kQ">
-                                        <rect key="frame" x="0.0" y="24.5" width="414" height="43.5"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hOV-Yo-7kQ" id="t2W-Jy-Agk">
-                                            <rect key="frame" x="0.0" y="0.0" width="384.5" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Okv-1A-peK">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gIy-Bj-q2i" userLabel="Button1_View">
+                                                <rect key="frame" x="0.0" y="0.0" width="103.5" height="50"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Oz-2L-8gb">
+                                                        <rect key="frame" x="0.0" y="0.0" width="103.5" height="50"/>
+                                                        <state key="normal" title="All projects"/>
+                                                        <connections>
+                                                            <action selector="buttonPressed:" destination="r9X-VR-eiS" eventType="touchUpInside" id="Wfq-n2-qd7"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstItem="6Oz-2L-8gb" firstAttribute="top" secondItem="gIy-Bj-q2i" secondAttribute="top" id="AUG-sa-EYn"/>
+                                                    <constraint firstAttribute="trailing" secondItem="6Oz-2L-8gb" secondAttribute="trailing" id="JXI-6W-S8E"/>
+                                                    <constraint firstItem="6Oz-2L-8gb" firstAttribute="leading" secondItem="gIy-Bj-q2i" secondAttribute="leading" id="Q0N-Tg-NQb"/>
+                                                    <constraint firstAttribute="bottom" secondItem="6Oz-2L-8gb" secondAttribute="bottom" id="wmf-Z9-hJe"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A0N-UQ-ByR" userLabel="Button2_View">
+                                                <rect key="frame" x="103.5" y="0.0" width="103.5" height="50"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hl0-nt-dch">
+                                                        <rect key="frame" x="0.0" y="0.0" width="103.5" height="50"/>
+                                                        <state key="normal" title="Sold"/>
+                                                        <connections>
+                                                            <action selector="buttonPressed:" destination="r9X-VR-eiS" eventType="touchUpInside" id="kEZ-Qd-0o4"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="hl0-nt-dch" secondAttribute="trailing" id="RzH-H1-ylo"/>
+                                                    <constraint firstAttribute="bottom" secondItem="hl0-nt-dch" secondAttribute="bottom" id="SDt-JP-UKP"/>
+                                                    <constraint firstItem="hl0-nt-dch" firstAttribute="top" secondItem="A0N-UQ-ByR" secondAttribute="top" id="cYD-dI-EkD"/>
+                                                    <constraint firstItem="hl0-nt-dch" firstAttribute="leading" secondItem="A0N-UQ-ByR" secondAttribute="leading" id="f0A-2p-loV"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QW0-bP-JtG" userLabel="Button3_View">
+                                                <rect key="frame" x="207" y="0.0" width="103.5" height="50"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VH8-gK-sEG">
+                                                        <rect key="frame" x="0.0" y="0.0" width="103.5" height="50"/>
+                                                        <state key="normal" title="Pipeline"/>
+                                                        <connections>
+                                                            <action selector="buttonPressed:" destination="r9X-VR-eiS" eventType="touchUpInside" id="LpI-Ue-54l"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstItem="VH8-gK-sEG" firstAttribute="leading" secondItem="QW0-bP-JtG" secondAttribute="leading" id="Ynd-TE-nWE"/>
+                                                    <constraint firstItem="VH8-gK-sEG" firstAttribute="top" secondItem="QW0-bP-JtG" secondAttribute="top" id="jsM-HI-IRR"/>
+                                                    <constraint firstAttribute="trailing" secondItem="VH8-gK-sEG" secondAttribute="trailing" id="oPl-sw-t72"/>
+                                                    <constraint firstAttribute="bottom" secondItem="VH8-gK-sEG" secondAttribute="bottom" id="y9l-KD-Oz2"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="REP-Ts-INl" userLabel="Button4_View">
+                                                <rect key="frame" x="310.5" y="0.0" width="103.5" height="50"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="adh-bI-3GB">
+                                                        <rect key="frame" x="0.0" y="0.0" width="103.5" height="50"/>
+                                                        <state key="normal" title="Lost"/>
+                                                        <connections>
+                                                            <action selector="buttonPressed:" destination="r9X-VR-eiS" eventType="touchUpInside" id="zlX-7y-g3j"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstItem="adh-bI-3GB" firstAttribute="top" secondItem="REP-Ts-INl" secondAttribute="top" id="6GD-hb-5L3"/>
+                                                    <constraint firstItem="adh-bI-3GB" firstAttribute="leading" secondItem="REP-Ts-INl" secondAttribute="leading" id="Uyj-BG-oOW"/>
+                                                    <constraint firstAttribute="bottom" secondItem="adh-bI-3GB" secondAttribute="bottom" id="Vov-bA-Fgb"/>
+                                                    <constraint firstAttribute="trailing" secondItem="adh-bI-3GB" secondAttribute="trailing" id="jF8-MK-pKs"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="Lxy-RY-RFg"/>
+                                            <constraint firstAttribute="bottom" secondItem="gIy-Bj-q2i" secondAttribute="bottom" id="eRd-fS-iUh"/>
+                                            <constraint firstItem="gIy-Bj-q2i" firstAttribute="leading" secondItem="Okv-1A-peK" secondAttribute="leading" id="u6n-Sb-Ola"/>
+                                            <constraint firstItem="gIy-Bj-q2i" firstAttribute="top" secondItem="Okv-1A-peK" secondAttribute="top" id="xMk-2v-Han"/>
+                                        </constraints>
+                                    </stackView>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9Ej-Cp-1uq">
+                                        <rect key="frame" x="0.0" y="50" width="414" height="675"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <prototypes>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ProjectListCell" id="hOV-Yo-7kQ">
+                                                <rect key="frame" x="0.0" y="24.5" width="414" height="43.5"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hOV-Yo-7kQ" id="t2W-Jy-Agk">
+                                                    <rect key="frame" x="0.0" y="0.0" width="384.5" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </tableViewCellContentView>
+                                            </tableViewCell>
+                                        </prototypes>
+                                    </tableView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="Okv-1A-peK" firstAttribute="top" secondItem="fJE-5r-8Vc" secondAttribute="top" id="6AW-3s-79q"/>
+                                    <constraint firstAttribute="bottom" secondItem="9Ej-Cp-1uq" secondAttribute="bottom" id="LBN-H1-G6z"/>
+                                    <constraint firstAttribute="trailing" secondItem="9Ej-Cp-1uq" secondAttribute="trailing" id="XZO-OO-27G"/>
+                                    <constraint firstItem="Okv-1A-peK" firstAttribute="leading" secondItem="fJE-5r-8Vc" secondAttribute="leading" id="cRG-7o-eVs"/>
+                                    <constraint firstAttribute="trailing" secondItem="Okv-1A-peK" secondAttribute="trailing" id="poc-6K-Q99"/>
+                                    <constraint firstItem="9Ej-Cp-1uq" firstAttribute="leading" secondItem="fJE-5r-8Vc" secondAttribute="leading" id="sPz-dI-YYh"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="zbL-qU-4gS"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="9Ej-Cp-1uq" firstAttribute="top" secondItem="zbL-qU-4gS" secondAttribute="top" id="5B3-X3-QJR"/>
-                            <constraint firstItem="zbL-qU-4gS" firstAttribute="bottom" secondItem="9Ej-Cp-1uq" secondAttribute="bottom" id="M3G-eW-iAY"/>
-                            <constraint firstItem="9Ej-Cp-1uq" firstAttribute="leading" secondItem="zbL-qU-4gS" secondAttribute="leading" id="fDs-95-PYa"/>
-                            <constraint firstItem="zbL-qU-4gS" firstAttribute="trailing" secondItem="9Ej-Cp-1uq" secondAttribute="trailing" id="iHA-yS-GLj"/>
+                            <constraint firstItem="fJE-5r-8Vc" firstAttribute="leading" secondItem="zbL-qU-4gS" secondAttribute="leading" id="R3m-7F-qjo"/>
+                            <constraint firstItem="zbL-qU-4gS" firstAttribute="trailing" secondItem="fJE-5r-8Vc" secondAttribute="trailing" id="etR-SZ-9gL"/>
+                            <constraint firstItem="fJE-5r-8Vc" firstAttribute="top" secondItem="zbL-qU-4gS" secondAttribute="top" id="mkI-d3-9ky"/>
+                            <constraint firstItem="zbL-qU-4gS" firstAttribute="bottom" secondItem="fJE-5r-8Vc" secondAttribute="bottom" id="uhJ-U3-dyY"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="6Zy-ot-oTK"/>
                     <connections>
+                        <outlet property="allProjectsButton" destination="6Oz-2L-8gb" id="op6-By-hz1"/>
+                        <outlet property="lostProjectsButton" destination="adh-bI-3GB" id="V29-Sl-7g9"/>
+                        <outlet property="pipelineProjectsButton" destination="VH8-gK-sEG" id="cGX-O5-FZ4"/>
                         <outlet property="projectTable" destination="9Ej-Cp-1uq" id="zZy-3c-Apm"/>
+                        <outlet property="soldProjectButton" destination="hl0-nt-dch" id="T86-ss-h64"/>
                         <segue destination="iTB-8L-Dox" kind="show" identifier="goToDetail" id="fFU-4r-hM7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Z2-UW-9Hh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2308.695652173913" y="-1245.5357142857142"/>
+            <point key="canvasLocation" x="2307.2463768115945" y="-1245.5357142857142"/>
         </scene>
         <!--Project Details-->
         <scene sceneID="u1R-xi-3kO">
