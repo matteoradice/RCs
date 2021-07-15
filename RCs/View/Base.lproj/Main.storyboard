@@ -151,12 +151,24 @@
                                     <constraint firstItem="9Ej-Cp-1uq" firstAttribute="leading" secondItem="fJE-5r-8Vc" secondAttribute="leading" id="sPz-dI-YYh"/>
                                 </constraints>
                             </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Xc-zQ-73W">
+                                <rect key="frame" x="0.0" y="792.5" width="414" height="20.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20.5" id="Rpq-hq-OV3"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="zbL-qU-4gS"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="5Xc-zQ-73W" firstAttribute="leading" secondItem="zbL-qU-4gS" secondAttribute="leading" id="Qb9-0u-6er"/>
                             <constraint firstItem="fJE-5r-8Vc" firstAttribute="leading" secondItem="zbL-qU-4gS" secondAttribute="leading" id="R3m-7F-qjo"/>
+                            <constraint firstItem="zbL-qU-4gS" firstAttribute="trailing" secondItem="5Xc-zQ-73W" secondAttribute="trailing" id="WTm-sz-wgK"/>
                             <constraint firstItem="zbL-qU-4gS" firstAttribute="trailing" secondItem="fJE-5r-8Vc" secondAttribute="trailing" id="etR-SZ-9gL"/>
+                            <constraint firstItem="zbL-qU-4gS" firstAttribute="bottom" secondItem="5Xc-zQ-73W" secondAttribute="bottom" id="hzK-Ys-yog"/>
                             <constraint firstItem="fJE-5r-8Vc" firstAttribute="top" secondItem="zbL-qU-4gS" secondAttribute="top" id="mkI-d3-9ky"/>
                             <constraint firstItem="zbL-qU-4gS" firstAttribute="bottom" secondItem="fJE-5r-8Vc" secondAttribute="bottom" id="uhJ-U3-dyY"/>
                         </constraints>
@@ -164,10 +176,12 @@
                     <navigationItem key="navigationItem" id="6Zy-ot-oTK"/>
                     <connections>
                         <outlet property="allProjectsButton" destination="6Oz-2L-8gb" id="op6-By-hz1"/>
+                        <outlet property="heightConstraint" destination="Rpq-hq-OV3" id="v5M-ug-BJc"/>
                         <outlet property="lostProjectsButton" destination="adh-bI-3GB" id="V29-Sl-7g9"/>
                         <outlet property="pipelineProjectsButton" destination="VH8-gK-sEG" id="cGX-O5-FZ4"/>
                         <outlet property="projectTable" destination="9Ej-Cp-1uq" id="zZy-3c-Apm"/>
                         <outlet property="soldProjectButton" destination="hl0-nt-dch" id="T86-ss-h64"/>
+                        <outlet property="splashForEmptyDBLabel" destination="5Xc-zQ-73W" id="oyC-Tz-IPH"/>
                         <segue destination="iTB-8L-Dox" kind="show" identifier="goToDetail" id="fFU-4r-hM7"/>
                     </connections>
                 </viewController>

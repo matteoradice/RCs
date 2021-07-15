@@ -14,8 +14,10 @@ class ProjectsListController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var soldProjectButton: UIButton!
     @IBOutlet weak var pipelineProjectsButton: UIButton!
     @IBOutlet weak var lostProjectsButton: UIButton!
+    @IBOutlet weak var heightConstraint: NSLayoutConstraint!
     
-    var splashForEmptyDBLabel: UILabel = UILabel()
+    @IBOutlet weak var splashForEmptyDBLabel: UILabel!
+    //var splashForEmptyDBLabel: UILabel = UILabel()
     
     struct ProjectsArrayForTable {
         var section:String!
@@ -33,12 +35,12 @@ class ProjectsListController: UIViewController, UITableViewDelegate, UITableView
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        splashForEmptyDBLabel = UILabel(frame: CGRect(x: projectTable.bounds.minX + 5, y: projectTable.bounds.maxY + 5, width: self.view.bounds.width - 10, height: projectTable.bounds.height - 10))
+
         splashForEmptyDBLabel.backgroundColor = .white
         splashForEmptyDBLabel.textAlignment = .center
-        splashForEmptyDBLabel.text = "Database is empty"
-        view.addSubview(splashForEmptyDBLabel)
+        splashForEmptyDBLabel.text = "This list is still empty"
+        heightConstraint.constant = projectTable.frame.height
+        
         
         projectTable.delegate = self
         projectTable.dataSource = self
@@ -51,7 +53,7 @@ class ProjectsListController: UIViewController, UITableViewDelegate, UITableView
         projectsArrayForTable = createProjectListArrayForTable(filter: activeFilter)
         projectTable.reloadData()
     }
-}
+    }
 
 //MARK: - Initialize data structure for this UIViewController
 
