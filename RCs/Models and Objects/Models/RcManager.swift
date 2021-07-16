@@ -9,24 +9,30 @@ import Foundation
 
 struct RcManager {
     
-    let allProjects: [Project] = CoreDataManager.shared.loadAllProjects()
-    
     func calculateWeightedRcs() -> String {
+        let allProjects: [Project] = CoreDataManager.shared.loadAllProjects()
+        print("Weighted \(allProjects)")
         var rcs: Float = 0
         for i in allProjects {
-            rcs += i.probability * i.revenueCreditShare * (i.clientPrice / (1 + i.expensesRatio))
+            let valueClean: Float = i.clientPrice / (1 + (i.expensesRatio / 100))
+            let unitRc: Float = valueClean / 100
+            rcs += unitRc * (i.probability / 100) * i.revenueCreditShare
         }
-        return String(rcs)
+        return String(format: "%.1f", rcs)
     }
     
     func calculateSoldRcs() -> String {
+        let allProjects: [Project] = CoreDataManager.shared.loadAllProjects()
+        print("Sold \(allProjects)")
         var rcs: Float = 0
         for i in allProjects {
             if i.probability == 1 {
-                rcs += i.probability * i.revenueCreditShare * (i.clientPrice / (1 + i.expensesRatio))
+                let valueClean: Float = i.clientPrice / (1 + (i.expensesRatio / 100))
+                let unitRc: Float = valueClean / 100
+                rcs += unitRc * (i.probability / 100) * i.revenueCreditShare
             }
         }
-        return String(rcs)
+        return String(format: "%.1f", rcs)
     }
     
 }

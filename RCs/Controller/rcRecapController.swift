@@ -19,10 +19,15 @@ class rcRecapController: UIViewController {
         
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         weightedRc = rcManager.calculateWeightedRcs()
         soldRc = rcManager.calculateSoldRcs()
-        
+        weightedRcLabel.text = weightedRc
+        soldRcLabel.text = soldRc
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        weightedRc = rcManager.calculateWeightedRcs()
+        soldRc = rcManager.calculateSoldRcs()
         weightedRcLabel.text = weightedRc
         soldRcLabel.text = soldRc
     }
