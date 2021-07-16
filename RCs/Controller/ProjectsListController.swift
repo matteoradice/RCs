@@ -17,7 +17,6 @@ class ProjectsListController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var heightConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var splashForEmptyDBLabel: UILabel!
-    //var splashForEmptyDBLabel: UILabel = UILabel()
     
     struct ProjectsArrayForTable {
         var section:String!
@@ -71,9 +70,9 @@ extension ProjectsListController {
             case .lost:
                 if i.probability == 0 { filteredProjectsArray.append(i) }
             case .pipeline:
-                if i.probability > 0 && i.probability < 1 { filteredProjectsArray.append(i) }
+                if i.probability > 0 && i.probability < 100 { filteredProjectsArray.append(i) }
             case .sold:
-                if i.probability == 1 { filteredProjectsArray.append(i) }
+                if i.probability == 100 { filteredProjectsArray.append(i) }
             }
         }
         

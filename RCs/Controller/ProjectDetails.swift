@@ -22,12 +22,15 @@ class ProjectDetails: UIViewController {
     @IBOutlet weak var probabilitySlider: UISlider!
     @IBOutlet weak var rcMultiplierSlider: UISlider!
     
+    var slidersAndLabels: [UISlider : UILabel] = [ : ]
+    
     var project: Project?
     var newProject: Project?
     var changes: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        slidersAndLabels = [expensesSlider : expensesLabel, rcShareSlider : rcShareLabel, probabilitySlider : probabilityLabel, rcMultiplierSlider : rcMultiplierLabel]
         compileFields()
     }
     
@@ -49,10 +52,10 @@ extension ProjectDetails {
         rcShareSlider.value = project!.revenueCreditShare
         probabilitySlider.value = project!.probability
         rcMultiplierSlider.value = project!.rcMultiplier
-        expensesLabel.text = String(project!.expensesRatio)
-        rcShareLabel.text = String(project!.revenueCreditShare)
-        probabilityLabel.text = String(project!.probability)
-        rcMultiplierLabel.text = String(project!.rcMultiplier)
+        expensesLabel.text = String(format: "%.f", project!.expensesRatio) + " %"
+        rcShareLabel.text = String(format: "%.f", project!.revenueCreditShare)
+        probabilityLabel.text = String(format: "%.f", project!.probability) + " %"
+        rcMultiplierLabel.text = String(format: "%.f", project!.rcMultiplier)
     }
 }
 
@@ -81,16 +84,42 @@ extension ProjectDetails {
 
 extension ProjectDetails {
     func saveNewItem() {
-            let title: String = "Confirm saving"
-            let message: String = "Do you want to save?"
-            let saveConfirmation = UIAlertController(title: title, message: message, preferredStyle: .alert)
-            let okAction: UIAlertAction = UIAlertAction(title: "Ok", style: .default) {UIAlertAction in
-                CoreDataManager.shared.addProject(project: self.newProject!)
+        let title: String = "Confirm saving"
+        let message: String = "Do you want to save?"
+        let saveConfirmation = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction: UIAlertAction = UIAlertAction(title: "Ok", style: .default) {UIAlertAction in
+            CoreDataManager.shared.addProject(project: self.newProject!)
+        }
+        let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .default) { UIAlertAction in saveConfirmation.dismiss(animated: true) }
+        saveConfirmation.addAction(okAction)
+        saveConfirmation.addAction(cancelAction)
+        self.present(saveConfirmation, animated: true, completion: nil)
+        CoreDataManager.shared.deleteProject(uniqueId: project!.uniqueId)
+    }
+}
+
+//MARK: - UISlider methods
+
+extension ProjectDetails {
+    @IBAction func sliderChanged(_ sender: UISlider) {
+        
+        var receiver: UILabel = UILabel()
+        
+        for i in slidersAndLabels {
+            if i.key == sender {
+                receiver = i.value
             }
-            let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .default) { UIAlertAction in saveConfirmation.dismiss(animated: true) }
-            saveConfirmation.addAction(okAction)
-            saveConfirmation.addAction(cancelAction)
-            self.present(saveConfirmation, animated: true, completion: nil)
-            CoreDataManager.shared.deleteProject(uniqueId: project!.uniqueId)
+        }
+        
+        let interval = 1
+        let value = Int(sender.value / Float(interval)) * interval
+        sender.value = Float(value)
+        
+        receiver.text = String(format: "%.f", sender.value)
+        if receiver == expensesLabel || receiver == probabilityLabel {
+            receiver.text = receiver.text! + " %"
+        }
+
+        
     }
 }

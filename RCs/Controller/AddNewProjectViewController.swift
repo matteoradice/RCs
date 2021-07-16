@@ -40,11 +40,19 @@ class AddNewProjectViewController: UIViewController {
         for i in slidersAndLabels {
             slider = i.key
             label = i.value
-            label.text = String(format: "%.1f", slider.value)
+            if slider == expensesSlider { slider.value = 10 }
+            else if slider == rcShareSlider { slider.value = 50 }
+            else if slider == probabilitySlider { slider.value = 50 }
+            else { slider.value = 175 }
+            label.text = String(format: "%.f", slider.value)
+            if label == expensesLabel || label == probabilityLabel {
+                label.text = label.text! + " %"
+            }
         }
         for i in textFields {
             i.text = ""
         }
+
     }
     
     @IBAction func movedSlider(_ sender: UISlider) {
@@ -52,7 +60,15 @@ class AddNewProjectViewController: UIViewController {
         for i in slidersAndLabels {
             if i.key == sender { receiver = i.value }
         }
-        receiver.text = String(format: "%.1f", sender.value)
+        
+        let interval = 1
+        let value = Int(sender.value / Float(interval)) * interval
+        sender.value = Float(value)
+        
+        receiver.text = String(format: "%.f", sender.value)
+        if receiver == expensesLabel || receiver == probabilityLabel {
+            receiver.text = receiver.text! + " %"
+        }
     }
     
     @IBAction func saveButtonPressed(_ sender: UIBarButtonItem) {
