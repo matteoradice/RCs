@@ -7,8 +7,8 @@
 
 import UIKit
 
-class AddNewProjectViewController: UIViewController {
-
+class AddNewProjectViewController: UIViewController, UITextFieldDelegate {
+    
     @IBOutlet weak var clientTextField: UITextField!
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var valueTextField: UITextField!
@@ -30,7 +30,14 @@ class AddNewProjectViewController: UIViewController {
         
         slidersAndLabels = [expensesSlider : expensesLabel, rcShareSlider : rcShareLabel, probabilitySlider : probabilityLabel, rcMultiplierSlider : rcMultiplierLabel]
         textFields = [clientTextField, titleTextField, valueTextField, commentsTextField]
-         initializeView()
+        initializeView()
+        
+        clientTextField.isHighlighted = true
+        
+        clientTextField.delegate = self
+        titleTextField.delegate = self
+        valueTextField.delegate = self
+        commentsTextField.delegate = self
         
     }
     
@@ -52,7 +59,7 @@ class AddNewProjectViewController: UIViewController {
         for i in textFields {
             i.text = ""
         }
-
+        
     }
     
     @IBAction func movedSlider(_ sender: UISlider) {
@@ -72,29 +79,46 @@ class AddNewProjectViewController: UIViewController {
     }
     
     @IBAction func saveButtonPressed(_ sender: UIBarButtonItem) {
+        
         let clientName: String = clientTextField.text ?? ""
         let projectTitle: String = titleTextField.text ?? ""
         let price: String = valueTextField.text ?? "0"
-        let clientPrice: Float = Float(price) ?? 0
-        let expensesRatio: Float = expensesSlider.value
-        let revenueCreditShare: Float = rcShareSlider.value
-        let comments: String = commentsTextField.text ?? ""
-        let probability: Float = probabilitySlider.value
-        let rcMultiplier: Float = rcMultiplierSlider.value
-        let project: Project = Project(clientName: clientName, projectTitle: projectTitle, clientPrice: clientPrice, expensesRatio: expensesRatio, revenueCreditShare: revenueCreditShare, comments: comments, probability: probability, rcMultiplier: rcMultiplier)
         
-        let title: String = "Confirm saving"
-        let message: String = "Do you want to save?"
-        
-        let saveConfirmation = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let okAction: UIAlertAction = UIAlertAction(title: "Ok", style: .default) {UIAlertAction in         CoreDataManager.shared.addProject(project: project)
-            self.initializeView() }
-        let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .default) {UIAlertAction in saveConfirmation.dismiss(animated: true) }
-        
-        saveConfirmation.addAction(okAction)
-        saveConfirmation.addAction(cancelAction)
-        
-        self.present(saveConfirmation, animated: true, completion: nil)
+        if clientName != "" && projectTitle != "" && price != "" {
+            
+            let clientPrice: Float = Float(price) ?? 0
+            let expensesRatio: Float = expensesSlider.value
+            let revenueCreditShare: Float = rcShareSlider.value
+            let comments: String = commentsTextField.text ?? ""
+            let probability: Float = probabilitySlider.value
+            let rcMultiplier: Float = rcMultiplierSlider.value
+            let project: Project = Project(clientName: clientName, projectTitle: projectTitle, clientPrice: clientPrice, expensesRatio: expensesRatio, revenueCreditShare: revenueCreditShare, comments: comments, probability: probability, rcMultiplier: rcMultiplier)
+            
+            let title: String = "Confirm saving"
+            let message: String = "Do you want to save?"
+            
+            let saveConfirmation = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            let okAction: UIAlertAction = UIAlertAction(title: "Ok", style: .default) {UIAlertAction in         CoreDataManager.shared.addProject(project: project)
+                self.initializeView() }
+            let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .default) {UIAlertAction in saveConfirmation.dismiss(animated: true) }
+            
+            saveConfirmation.addAction(okAction)
+            saveConfirmation.addAction(cancelAction)
+            
+            self.present(saveConfirmation, animated: true, completion: nil)
+            
+        }
         
     }
+}
+
+//MARK: - TextField delegates
+
+extension AddNewProjectViewController {
+    
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        if textField.text != "" { return true }
+        else { return false }
+    }
+    
 }

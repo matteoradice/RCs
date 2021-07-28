@@ -15,32 +15,28 @@ class ProjectsListController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var pipelineProjectsButton: UIButton!
     @IBOutlet weak var lostProjectsButton: UIButton!
     @IBOutlet weak var heightConstraint: NSLayoutConstraint!
-    
     @IBOutlet weak var splashForEmptyDBLabel: UILabel!
     
     struct ProjectsArrayForTable {
         var section:String!
         var rows:[(UUID, String)]!
     }
-    var projectsArrayForTable: [ProjectsArrayForTable] = []
     
+    var projectsArrayForTable: [ProjectsArrayForTable] = []
+    var activeFilter: Filters = .all
     var idOfSelectedProject: UUID = UUID()
     var selectedProject: Project?
     
     let colors: [UIColor] = [.lightGray, .lightGray]
     let headerHeight: CGFloat = 30
     
-    var activeFilter: Filters = .all
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        initializeSplashView()
         splashForEmptyDBLabel.backgroundColor = .white
         splashForEmptyDBLabel.textAlignment = .center
         splashForEmptyDBLabel.text = "This list is still empty"
         heightConstraint.constant = projectTable.frame.height
-        
-        
         projectTable.delegate = self
         projectTable.dataSource = self
         let nib: UINib = UINib(nibName: "ProjectCell", bundle: nil)
@@ -52,7 +48,12 @@ class ProjectsListController: UIViewController, UITableViewDelegate, UITableView
         projectsArrayForTable = createProjectListArrayForTable(filter: activeFilter)
         projectTable.reloadData()
     }
+    
+    func initializeSplashView() {
+        
     }
+    
+}
 
 //MARK: - Initialize data structure for this UIViewController
 
